@@ -1,1 +1,6 @@
-{}
+{
+    "projectId": "ns9qwt",
+    "baseUrl": "https://jamespay.stage.james.delivery",
+    "apiUrl": "https://jamespay.stage.james.delivery",
+    "pageLoadTimeout": 60000
+}
