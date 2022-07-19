@@ -11,7 +11,7 @@
     "@faker-js/faker": "^7.3.0"
   },
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npm cypress run"
   },
   "author": "Eduardo Leszczij",
   "license": "MIT",
