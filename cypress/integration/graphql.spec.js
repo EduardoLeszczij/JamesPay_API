@@ -4,7 +4,7 @@ import { createRecipient, listCustomersById, listRecipientByEmail, teste, create
 
 describe('PSOT /graphql', function() {
 
-    it.only('Create Recipient', function() {
+    it('Create Recipient', function() {
         
         cy.api({
             method: 'POST',
@@ -22,7 +22,7 @@ describe('PSOT /graphql', function() {
         })
     });
 
-    it.only('List Recipient by E-mail', function() {
+    it('List Recipient by E-mail', function() {
 
         cy.api({
             method: 'POST',
@@ -79,7 +79,7 @@ describe('PSOT /graphql', function() {
         });
     });
 
-    it.only('Create Bank Account', function() {
+    it('Create Bank Account', function() {
         
         cy.api({
             method: 'POST',
@@ -97,7 +97,7 @@ describe('PSOT /graphql', function() {
         })
     });
 
-    it.only('Create Bank Account', function() {
+    it('Create Bank Account', function() {
         
         cy.api({
             method: 'POST',
