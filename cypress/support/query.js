@@ -58,13 +58,13 @@ const listRecipientByEmail = {
 const createCustomer = {
     query: `mutation { 
         createCustomer (input: {
-            email: "giovana@gmail.com.br",
-            documentId: "57237421085",
-            firstName:"giovana",
+            email: "teste_4@gmail.com.br",
+            documentId: "02400147078",
+            firstName:"tests",
             lastName: "silva",
             phone: "41997878363",
             pagarmeGatewayCustomer: true,
-            referenceId: "01010102"}) {
+            referenceId: "0013"}) {
                 customer{
                     email
                     documentId
@@ -154,6 +154,62 @@ const cratebankAccountInvalid = {
     }`
 }
 
+const createPaymentMethod = {
+    query: `mutation {
+        createPaymentMethod (input: { 
+            customerId: "d4bf58f9-abd3-43d8-9f7c-28698ac2630e",
+            paymentMethodNonce: "braintree",
+        }) {
+            paymentMethod {
+                id
+                customer {
+                    id
+                    email
+                }
+                billingAddress
+                bin
+                cardType
+                cardholderName
+                gatewayReference
+                isDiscarded
+                lastDigits
+                type
+            }
+        }
+    }`
+}
+
+const createOrder = {
+    query: `mutation {
+        createOrder(input: {
+            amount: 5.00,
+            paymentMethodId: "acf27990-900a-4064-8c3d-f0fb6089cc36",
+            customerId: "06339978-c133-439e-be11-eb1f43441b6f",
+            referenceId: "01"
+        }) {
+            order {
+                id
+                amount
+                createdAt
+                canceledAt
+                cancelReason
+                customer {
+                    id
+                }
+                payments{
+                    edges{
+                        node{
+                            id
+                            status
+                            errorMessage
+                        }
+                    }
+                }
+            }
+        }
+    }`
+}
+
 
 export {
     teste,
@@ -162,5 +218,7 @@ export {
     createCustomer,
     createRecipient,
     cratebankAccount,
-    cratebankAccountInvalid
+    cratebankAccountInvalid,
+    createPaymentMethod,
+    createOrder
 }

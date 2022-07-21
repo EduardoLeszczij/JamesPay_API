@@ -1,12 +1,12 @@
 /// <reference types='cypress'/>
 
-import { createRecipient, listCustomersById, listRecipientByEmail, teste, createCustomer, cratebankAccount, cratebankAccountInvalid} from "../support/query";
+import { createRecipient, listCustomersById, listRecipientByEmail, teste, createCustomer, cratebankAccount, cratebankAccountInvalid, createPaymentMethod, createOrder} from "../support/query";
 
-describe('PSOT /graphql', function() {
+describe('Recipient', function() {
 
     it('Create Recipient', function() {
         
-        cy.api({
+        cy.request({
             method: 'POST',
             url: '/graphql',
             body: createRecipient,
@@ -18,13 +18,13 @@ describe('PSOT /graphql', function() {
                 'failOnStatusCode': false
             }
         }).then(function(response){
-            expect(response.status).to.be.eq(200)            
+            cy.log(response.body)          
         })
     });
 
     it('List Recipient by E-mail', function() {
 
-        cy.api({
+        cy.request({
             method: 'POST',
             url: '/graphql',
             body: listRecipientByEmail,
@@ -42,10 +42,13 @@ describe('PSOT /graphql', function() {
             expect(response.body.data.recipient.firstName).to.be.eq('test')
         })
     });
+})
+
+describe('Customer', function() {
 
     it('Create Customer', function() {
 
-        cy.api({
+        cy.request({
             method: 'POST',
             url: '/graphql',
             body: createCustomer,
@@ -63,7 +66,7 @@ describe('PSOT /graphql', function() {
 
     it('List Customers By Id', function() {
         
-        cy.api({
+        cy.request({
             method:'POST',
             url: '/graphql',
             body: listCustomersById,
@@ -78,10 +81,14 @@ describe('PSOT /graphql', function() {
             cy.log(response.body)
         });
     });
+})
+
+
+describe('Bank Account', function() {
 
     it('Create Bank Account', function() {
         
-        cy.api({
+        cy.request({
             method: 'POST',
             url: '/graphql',
             body: cratebankAccount,
@@ -97,9 +104,9 @@ describe('PSOT /graphql', function() {
         })
     });
 
-    it('Create Bank Account', function() {
+    it('Create Bank Account Invalid', function() {
         
-        cy.api({
+        cy.request({
             method: 'POST',
             url: '/graphql',
             body: cratebankAccountInvalid,
@@ -111,7 +118,50 @@ describe('PSOT /graphql', function() {
                 'failOnStatusCode': false
             }
         }).then(function(response){
+            cy.log(response.body)
+        })
+    });
+})
 
+describe('Payments Method', function() {
+
+    it('crate Payment Method', function() {
+        
+        cy.request({
+            method: 'POST',
+            url: '/graphql',
+            body: createPaymentMethod,
+            headers: {
+                'authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.IjAxODY3OGEwLWZkMzgtNDM5Zi1hZDI2LTYyN2Y2YzhmZjY3ZiI.mufsp0Uqd4L44V-gIY7GcHfG4Nuhf2eTaEErSYRxoa0`,
+                'X-CLIENT-IDENTITY': "MDE4Njc4YTAtZmQzOC00MzlmLWFkMjYtNjI3ZjZjOGZmNjdm",
+                'Content-Type': 'application/json',
+                'x-frame-options': 'SAMEORIGIN',
+                'failOnStatusCode': false
+            }
+        }).then(function(response){
+            cy.log(response.body)
+        })
+    });
+    
+})
+
+describe('Orders', function() {
+
+    it('Create Order', function() {
+        
+        cy.request({
+            method: 'POST',
+            url: '/graphql',
+            body: createOrder,
+            headers: {
+                'authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.IjAxODY3OGEwLWZkMzgtNDM5Zi1hZDI2LTYyN2Y2YzhmZjY3ZiI.mufsp0Uqd4L44V-gIY7GcHfG4Nuhf2eTaEErSYRxoa0`,
+                'X-CLIENT-IDENTITY': "MDE4Njc4YTAtZmQzOC00MzlmLWFkMjYtNjI3ZjZjOGZmNjdm",
+                'Content-Type': 'application/json',
+                'x-frame-options': 'SAMEORIGIN',
+                'failOnStatusCode': false
+            }
+        }).then(function(response){
+            cy.log(response.body)
         })
     });
 })

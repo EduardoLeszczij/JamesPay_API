@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import '@bahmutov/cy-api'
+import  '@bahmutov/cy-api'
 import '@faker-js/faker'
 
 // Alternatively you can use CommonJS syntax:
